@@ -14,7 +14,7 @@ public class TestBase
     protected static string PathToIndexHtml =
         Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).ToString())
             .ToString()) + "/Etprf.QaTestPublic/index.html";
-    private static List<string>? ErrorMessage;
+    private static List<string>? _errorMessage;
 
     [OneTimeSetUp]
     public void Setup()
@@ -23,7 +23,7 @@ public class TestBase
         // Отключить "Браузером управляет автоматизированное ПО"
         _chromeOptions.AddAdditionalOption("useAutomationExtension", false);
         _chromeOptions.AddExcludedArgument("enable-automation");
-        ErrorMessage = new List<string>(); 
+        _errorMessage = new List<string>(); 
     }
     [SetUp]
     public void BeforeTest()
@@ -36,11 +36,11 @@ public class TestBase
     {
         Driver.Close();
         Driver.Quit();
-        Assert.That(ErrorMessage, Is.Empty, $"Значение finalResultValue не соответсвует ожидаемому 220 при значении: \n{ string.Join("\n", ErrorMessage)}");
+        Assert.That(_errorMessage, Is.Empty, $"Значение finalResultValue не соответсвует ожидаемому 220 при значениях: \n{ string.Join("\n", _errorMessage)}");
     }
     
     protected static void CustomAssertAreEqual(string expected, string actual, string message)
     {
-        if (expected != actual) {ErrorMessage.Add(message);}
+        if (expected != actual) {_errorMessage?.Add(message);}
     }
 }
