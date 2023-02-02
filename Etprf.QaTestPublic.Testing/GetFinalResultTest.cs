@@ -44,7 +44,7 @@ public class Tests : TestBase
             CustomAssertAreEqual("220", finalResultValue,
                 $"secretHeaderValue = {secretHeaderValue} finalResultValue = {finalResultValue}");
             Console.WriteLine(
-                $"При значении secretHeaderValue = {secretHeaderValue} результат finalResultValue = {finalResultValue}");
+                $"При значении secretHeaderValue = {secretHeaderValue} результат finalResultValue = {finalResultValue}"); 
         }
     }
 }
